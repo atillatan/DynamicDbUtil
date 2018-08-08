@@ -14,7 +14,7 @@ using System.Collections.Specialized;
 
 namespace DynamicDbUtil
 {
-    partial class Utils //DynamicDbUtil for database operations
+    partial class Db //DynamicDbUtil for database operations
     {
         public static SqlConnection CreateConnection(string connectionString)
         {
@@ -93,7 +93,7 @@ namespace DynamicDbUtil
 
         public static T Get<T>(SqlConnection connection, string commandText, params object[] args)
         {
-            return Utils.Map<T>(Get(connection, commandText, args));
+            return Db.Map<T>(Get(connection, commandText, args));
         }
 
         public static List<T> List<T>(SqlConnection connection, string commandText, params object[] args)
@@ -103,7 +103,7 @@ namespace DynamicDbUtil
 
         public static List<T> List<T>(SqlConnection connection, string commandText, int pageIndex, int PageCount, string sortExpression, params object[] args)
         {
-            return Utils.ToMap<T>(List(connection, commandText, pageIndex, PageCount, args));
+            return Db.ToMap<T>(List(connection, commandText, pageIndex, PageCount, args));
         }
 
         public static int Execute(SqlConnection connection, SqlTransaction transaction, string commandText, CommandType commandType, params object[] args)
@@ -248,7 +248,7 @@ namespace DynamicDbUtil
 
     }
 
-    static partial class Utils //DynamicMapper for mapping operations
+    static partial class Db //DynamicMapper for mapping operations
     {
         private static void DynamicMap(KeyValuePair<string, object> prop, dynamic instance, Type t)
         {
@@ -358,7 +358,7 @@ namespace DynamicDbUtil
         }
     }
 
-    partial class Utils //Reflections for row mapping
+    partial class Db //Reflections for row mapping
     {
         private static readonly ConcurrentDictionary<string, IEnumerable<PropertyInfo>> TypeProperties = new ConcurrentDictionary<string, IEnumerable<PropertyInfo>>();
 

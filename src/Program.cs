@@ -12,13 +12,13 @@ namespace ConsoleExample
             // Examples
             using (SqlConnection conn = new SqlConnection(@"Data Source=.\SQLEXPRESS; Initial Catalog=EXA;Integrated Security=True;Pooling=True"))
             {
-                dynamic x = Utils.List(conn, "select Id,StringVar,IntVar,DateTimeVar from Example");
-                dynamic x21 = Utils.List(conn, "select Id,StringVar,IntVar,DateTimeVar from Example where Id={0}", 1);
+                dynamic x = Db.List(conn, "select Id,StringVar,IntVar,DateTimeVar from Example");
+                dynamic x21 = Db.List(conn, "select Id,StringVar,IntVar,DateTimeVar from Example where Id={0}", 1);
 
-                ExampleDto y = Utils.Map<ExampleDto>(x);
+                ExampleDto y = Db.Map<ExampleDto>(x);
 
 
-                ExampleDto xy = Utils.Get<ExampleDto>(conn, @"
+                ExampleDto xy = Db.Get<ExampleDto>(conn, @"
                 SELECT 
                        Ad [Adi]
                       ,Soyad [Soyadi]
@@ -32,7 +32,7 @@ namespace ConsoleExample
 
 
 
-                dynamic x1 = Utils.Get(conn, @"
+                dynamic x1 = Db.Get(conn, @"
                 SELECT 
                     Ad [Adi]
                     ,Soyad [Soyadi]
@@ -45,10 +45,10 @@ namespace ConsoleExample
                 ", 124);
 
 
-                ExampleDto y1 = Utils.Map<ExampleDto>(x);
+                ExampleDto y1 = Db.Map<ExampleDto>(x);
 
 
-                UserDto x2 = Utils.Get<UserDto>(conn, @"
+                UserDto x2 = Db.Get<UserDto>(conn, @"
                 SELECT                     
                     KullaniciAd [UserName]
                     ,Sifre [Password]
@@ -72,7 +72,7 @@ namespace ConsoleExample
 
 
 
-                List<UserDto> x3 = Utils.List<UserDto>(conn, @"
+                List<UserDto> x3 = Db.List<UserDto>(conn, @"
                 SELECT                     
                     KullaniciAd [UserName]
                     ,Sifre [Password]
