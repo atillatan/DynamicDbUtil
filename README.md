@@ -3,6 +3,8 @@ Mini ORM Utility - Simple single file SQL Server query runner and result mapper.
 
 
 ```csharp
+using DynamicDbUtil;
+
 class Program
     {
         static void Main(string[] args)
